@@ -1,0 +1,38 @@
+
+# Loads default set of integrations. Do not remove.
+default_config:
+
+# Text to speech
+tts:
+  - platform: google_translate
+
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+
+# =============================================================================
+# INFLUX setup
+# =============================================================================
+influxdb:
+  host: 192.168.86.26
+  port: 8086
+  database: home_assistant
+  # username: home_assistant
+  # password: password
+  ssl: false
+  verify_ssl: false
+  max_retries: 3
+  default_measurement: state
+  # exclude:
+  #   entities:
+  #      - entity.id1
+  #      - entity.id2
+  #   domains:
+  #      - automation
+  include:
+    entities:
+       - sensor.electricity_meter_power_consumption
+       - sensor.gas_meter_gas_consumption
+  # tags:
+  #   instance: prod
+  #   source: hass
